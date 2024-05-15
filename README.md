@@ -4,6 +4,9 @@
 
 ### Project and Learning Goals 
 <!-- Important!  Do not say in this section that this is college assignment. -->
+Our team is coming together to create a web application using fullstack development. The app is called SideQuest!
+In SideQuest, you can create goals and get points for achieving them. Level up, get new gear, and get motivated to achieve your goals!
+As a team, we want to get more experience in software development.
 
 ### Software Description 
 <!-- Provide a description of your team project.  Describe how to use the software. -->
