@@ -1,4 +1,4 @@
-# RPG Task Manager
+# Side Quest
 
 ## Overview
 
@@ -22,7 +22,6 @@ As a team, we want to get more experience in software development.
 
 ## Collaborators
 <!-- Alphabetical order for now. Could also be in order of role  -->
-* David Delcid
 * Grant Jones
 * Isaiah Page
 * Jase Erickson
