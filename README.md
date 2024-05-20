@@ -1,4 +1,4 @@
-# RPG Task Manager
+# Side Quest
 
 ## Overview
 
@@ -19,7 +19,6 @@
 
 ## Collaborators
 <!-- Alphabetical order for now. Could also be in order of role  -->
-* David Delcid
 * Grant Jones
 * Isaiah Page
 * Jase Erickson
