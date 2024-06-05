@@ -4,7 +4,16 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 def home(request):
-    return HttpResponse("Hello, Django!")
+    return render(
+        request,
+        'test_app/index.html',
+    )
+
+def task(request):
+    return render(
+        request,
+        'test_app/task.html',
+    )
 
 def hello_there(request, name):
     return render(
@@ -15,3 +24,4 @@ def hello_there(request, name):
             'date': datetime.now()
         }
     )
+
