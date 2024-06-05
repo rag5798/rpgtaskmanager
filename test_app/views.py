@@ -6,13 +6,13 @@ from django.shortcuts import render
 def home(request):
     return render(
         request,
-        'test_app/index.html',
+        'test_app/index.html'
     )
 
 def task(request):
     return render(
         request,
-        'test_app/task.html',
+        'test_app/task.html'
     )
 
 def hello_there(request, name):
