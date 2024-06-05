@@ -6,7 +6,7 @@ from django.shortcuts import render
 def home(request):
     return render(
         request,
-        template_name="test_app/index.html"
+        "test_app/index.html"
     )
 
 def hello_there(request, name):
