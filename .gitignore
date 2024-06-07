@@ -1,0 +1,7 @@
+# Ignore Python compiled files
+sidequest_server/__pycache__/
+sidequest/__pycache__/
+
+# Ignore virtual environments
+venv/
+env/
