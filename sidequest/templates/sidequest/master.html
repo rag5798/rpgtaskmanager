@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Side Quests</title>
-        <script src="index.js" defer></script>
-        <link rel="stylesheet" href="styles.css">
+        <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
         <header>
@@ -24,14 +22,21 @@
                 <a href="hello_there">Character</a>
             </div>
         </div>
+        {% block content %}
+        {% endblock %}
+        <script>
+            const menuContainer = document.getElementById('menu-container');
+            const menuTrigger = document.getElementById('menu-trigger');
 
-        <main>
-            <section id="game"> </section>
-            <section id="widgets">
-                <div><a href="task">Tasks</a></div>
-                <div><a href="">Quests</a></div>
-                <div><a href="hello_there">Character Info</a></div>
-            </section>
-        </main>
+            menuTrigger.addEventListener('click', () => {
+                if (menuContainer.style.left === '0px') {
+                    menuContainer.style.left = '-250px';
+                    menuTrigger.style.color = "black"
+                } else {
+                    menuContainer.style.left = '0px';
+                    menuTrigger.style.color = "white"
+                }
+            });
+        </script>
     </body>
 </html>

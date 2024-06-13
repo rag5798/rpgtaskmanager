@@ -30,7 +30,7 @@ As a team, we want to get more experience in software development.
 
 ## Useful Websites
 
-* [Web Site Name](http://url.link.goes.here)
+* [W3 Schools - Django](https://www.w3schools.com/django/)
 * [Web Site Name](http://url.link.goes.here)
 
 ## Future Work
