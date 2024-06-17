@@ -1,9 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'sidequest/styles.css' %}">
+        <script src="{% static 'sidequest/index.js' %}" defer></script>
+        {% block links %}
+        {% endblock %}
     </head>
     <body>
         <header>
@@ -24,19 +29,5 @@
         </div>
         {% block content %}
         {% endblock %}
-        <script>
-            const menuContainer = document.getElementById('menu-container');
-            const menuTrigger = document.getElementById('menu-trigger');
-
-            menuTrigger.addEventListener('click', () => {
-                if (menuContainer.style.left === '0px') {
-                    menuContainer.style.left = '-250px';
-                    menuTrigger.style.color = "black"
-                } else {
-                    menuContainer.style.left = '0px';
-                    menuTrigger.style.color = "white"
-                }
-            });
-        </script>
     </body>
 </html>

@@ -1,137 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamburger Menu</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-        }
+{% extends "./master.html" %}
+{% load static %}
 
-        header {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            align-items: center;
-            padding: 10px;
-            color: #fff;
-            position: relative;
-            z-index: 1001;
-        }
+{% block title %}
+    Tasks
+{% endblock %}
 
-        header h1{
-            color: #111;
-        }
+{% block links %}
+    <link rel="stylesheet" href="{% static 'sidequest/task.css' %}">
+{% endblock %}
 
-        .user-login {
-            justify-self: right; /* Center the login elements */
-        }
-
-        .user-login input {
-            padding: 5px;
-            margin-right: 5px;
-        }
-
-        .user-login button {
-            padding: 5px;
-        }
-
-        #menu-container {
-            position: fixed;
-            top: 0;
-            left: -250px; /* Initially hidden */
-            width: 250px;
-            height: 100%;
-            background-color: #111; /* Black background */
-            color: #fff; /* White text */
-            transition: left 0.5s;
-            z-index: 1000;
-        }
-
-        #menu-content {
-            padding: 20px;
-        }
-
-        #menu-content a {
-            display: block;
-            padding: 10px;
-            text-decoration: none;
-            color: #fff;
-        }
-
-        #menu-trigger {
-            font-size: 30px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            color: black;
-            justify-self: left; /* Center the hamburger icon */
-        }
-
-        #menu-trigger:hover {
-            background-color: blanchedalmond;
-            color: white;
-        }
-
-        .task-box {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-
-        .task-box .box {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            width: 45%; /* Adjust as necessary */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 768px) {
-            .task-box .box {
-                width: 100%; /* Stack boxes on smaller screens */
-            }
-        }
-
-        .box h2 {
-            margin-top: 0;
-        }
-
-        .task {
-            margin: 10px 0;
-            padding: 10px;
-            background-color: #fafafa;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-        }        
-    </style>
-</head>
-<body>
-    <header>
-        <button id="menu-trigger">☰</button> <!-- Hamburger icon -->
-        <h1>Side Quest</h1>
-        <div class="user-login">
-            <input type="text" placeholder="Username">
-            <button>Login</button>
-        </div>
-    </header>
-
-    <div id="menu-container">
-        <div id="menu-content">
-            <!-- Your menu items go here -->
-            <a href="#"></a>
-            <a href="#"></a>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Tasks</a>
-        </div>
-    </div>
-
+{% block content %}   
     <main>
         <div class="task-box">
             <div class="box current-task">
@@ -142,22 +20,4 @@
             </div>
         </div>
     </main>
-    <footer>
-
-    </footer>
-    <script>
-        const menuContainer = document.getElementById('menu-container');
-        const menuTrigger = document.getElementById('menu-trigger');
-
-        menuTrigger.addEventListener('click', () => {
-            if (menuContainer.style.left === '0px') {
-                menuContainer.style.left = '-250px';
-                menuTrigger.style.color = "black"
-            } else {
-                menuContainer.style.left = '0px';
-                menuTrigger.style.color = "white"
-            }
-        });
-    </script>
-</body>
-</html>
+{% endblock %}
