@@ -7,14 +7,7 @@
     <title>Login Page</title>
 </head>
 <body>
-    <h2>Login</h2>
-    {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+    <h2>Add User</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
@@ -25,8 +18,8 @@
                 </div>
             {% endif %}
         {% endfor %}
-        <button type="submit">Login</button>
+        <button type="submit">Add User</button>
     </form>
-    <a href="sidequest/add_user.html"></a>
+    <a href="sidequest/login.html">login</a>
 </body>
 </html>

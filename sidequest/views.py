@@ -15,7 +15,7 @@ def task(request):
         "sidequest/task.html"
     )
 
-def add_user(request):
+def login(request):
     if request.method == 'POST':
         form = UserDataForm(request.POST)
         if form.is_valid():
@@ -38,4 +38,19 @@ def add_user(request):
     else:
         form = UserDataForm()
 
+    return render(request, 'sidequest/login.html', {'form': form})
+
+def add_user(request):
+    if request.method == 'POST':
+        form = UserDataForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+        try:
+            user_data = UserData.objects.get(username=username)
+        except UserData.DoesNotExist:
+            UserData.objects.create(username=username, password=password)
+            return redirect('home')
+    else:
+        form = UserDataForm()
     return render(request, 'sidequest/login.html', {'form': form})
