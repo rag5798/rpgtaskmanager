@@ -1,25 +1,15 @@
-<!-- login.html -->
-
+<!-- templates/register.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
+    <title>Register</title>
 </head>
 <body>
-    <h2>Add User</h2>
+    <h2>Register</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        {% for field in form %}
-            {% if field.errors %}
-                <div class="alert alert-danger">
-                    {{ field.errors }}
-                </div>
-            {% endif %}
-        {% endfor %}
-        <button type="submit">Add User</button>
+        <button type="submit">Register</button>
     </form>
-    <a href="sidequest/login.html">login</a>
 </body>
 </html>
