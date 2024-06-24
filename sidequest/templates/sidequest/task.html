@@ -14,9 +14,23 @@
         <div class="task-box">
             <div class="box current-task">
                 <h2>Current Tasks</h2>
+                <ul>
+                    {% for task in tasks %}
+                        {% if not task.completed %}
+                            <li>{{ task.task_name }}: {{ task.task_description }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
             <div class="box past-tasks">
                 <h2>Past Tasks</h2>
+                <ul>
+                    {% for task in tasks %}
+                        {% if task.completed %}
+                            <li>{{ task.task_name }}: {{ task.task_description }}</li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </main>

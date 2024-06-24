@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import UserDataForm, TaskForm
-from .models import UserData, Task
+from .models import UserData, Task, User
 
 def home(request):
     return render(
@@ -12,12 +12,14 @@ def home(request):
         "sidequest/index.html"
     )
 
+@login_required
 def task(request):
-    username = request.session
-    tasks = Task.objects.filter()
+    user_id = request.user.id
+    tasks = Task.objects.filter(user_id=user_id)
     return render(
         request,
         "sidequest/task.html",
+        {"tasks": tasks}  # Pass the tasks to the template context
     )
 
 def user_login(request):
