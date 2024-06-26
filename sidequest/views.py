@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import UserDataForm, TaskForm
+from .forms import UserDataForm, TaskForm, TaskCreationForm
 from .models import UserData, Task, User
 
 def home(request):
@@ -93,3 +93,23 @@ def register(request):
 @login_required
 def protected_view(request):
     return render(request, 'protected_page.html')
+
+# views.py
+@login_required
+def task_creation(request):
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user_id = request.user
+            task.completed = False
+            task.task_completion_counter = 0
+            task.repetitive = form.cleaned_data['repetitive']
+            task.save()
+            return redirect('task')
+    else:
+        form = TaskCreationForm()
+    return render(request, 'sidequest/task_creation.html', {'form': form})
+
+
+

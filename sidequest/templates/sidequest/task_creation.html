@@ -1,0 +1,21 @@
+{% extends "./master.html" %}
+{% load static %}
+
+{% block title %}
+    Create Task
+{% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'sidequest/task.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main>
+        <h2>Create a New Task</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button">Create Task</button>
+        </form>
+    </main>
+{% endblock %}
