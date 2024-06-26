@@ -15,4 +15,11 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['user_id','task_name','task_description','completed','task_completion_counter']
 
+class TaskCreationForm(forms.ModelForm):
+    repetitive = forms.BooleanField(required=False, label='Repetitive Task')
+
+    class Meta:
+        model = Task
+        fields = ['task_name', 'task_description']
+
 
