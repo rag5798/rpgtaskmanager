@@ -2,3 +2,18 @@
     display: flex;
     justify-content: space-around;
 }
+#widgets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 50px 0;
+}
+#widgets div {
+    padding: 50px;
+    text-align: center;
+    align-content: center;
+    border-radius: 16px;
+    background-color: rgb(221, 221, 221);
+    width: 80px;
+    height: 80px;
+}

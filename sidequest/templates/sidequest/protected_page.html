@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Protected Page</title>
-</head>
-<body>
+{% extends "./master.html" %}
+
+{% block title %} Protected Page {% endblock %}
+{% block mainTitle %} Protected Page {% endblock %}
+
+{% block content %}  
     <h1>Welcome, {{ request.user.username }}!</h1>
     <p>This page is protected and can only be accessed by logged-in users.</p>
-</body>
-</html>
-
+{% endblock %}

@@ -1,15 +1,21 @@
 <!-- templates/login.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-</body>
-</html>
+{% extends "./master.html" %}
+{% load static %}
+
+{% block title %} Login {% endblock %}
+{% block mainTitle %} Login {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'sidequest/form.css' %}?6282024">
+{% endblock %}
+
+{% block content %}   
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <p class="message">Don't have an account? </p><a href="register">Sign Up now</a>
+    </div>
+{% endblock %}

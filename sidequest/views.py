@@ -20,6 +20,12 @@ def task(request):
         "sidequest/task.html",
     )
 
+def character(request):
+    return render(
+        request,
+        "sidequest/character.html",
+    )
+
 def user_login(request):
     if request.method == 'POST':
         form = UserDataForm(request.POST)
