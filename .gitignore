@@ -7,3 +7,5 @@ sidequest/migrations/__pycache__/
 # Ignore virtual environments
 venv/
 env/
+
+**/db.sqlite3
