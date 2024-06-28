@@ -11,3 +11,9 @@ def task(request):
         request,
         "sidequest/task.html"
     )
+
+def character(request):
+    return render(
+        request,
+        "sidequest/character.html"
+    )
