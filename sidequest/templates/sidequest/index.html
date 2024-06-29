@@ -10,8 +10,12 @@
 
 {% block content %}   
     <section id="game">
-        <img src="{% static 'sidequest/img/hero.png' %}" alt="character hero image">
-        <img src="{% static 'sidequest/img/gelatinous_cube.png' %}" alt="gelatinous cube">
+        <div id="hero">
+            <img class='warrior pixelArt' src="{% static 'sidequest/img/idle.png' %}" alt="warrior">
+        </div>
+        <div id="monster">
+            <img class='skeleton pixelArt' src="{% static 'sidequest/img/idleSkeleton.png' %}" alt="skeleton">
+        </div>
     </section>
     <section id="widgets">
         <div><a href="task">Tasks</a></div>

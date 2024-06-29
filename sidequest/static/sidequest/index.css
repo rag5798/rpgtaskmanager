@@ -2,12 +2,38 @@
     display: flex;
     justify-content: space-around;
 }
+
+:root {
+    --pixel-size: 6;
+}
+
+#hero, #monster {
+    width: calc(95px * var(--pixel-size));
+    height: calc(80px * var(--pixel-size));
+    overflow: hidden;
+}
+
+.warrior {
+    animation: moveSpriteSheet 1s steps(6) infinite;
+    width: calc(700px * var(--pixel-size));
+}
+
+.skeleton {
+    /* animation: reverseMoveSpriteSheet 1s steps(4) infinite; */
+    width: calc(500px * var(--pixel-size));
+}
+
+.pixelart {
+    image-rendering: pixelated;
+}
+
 #widgets {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 50px 0;
 }
+
 #widgets div {
     padding: 50px;
     text-align: center;
@@ -16,4 +42,22 @@
     background-color: rgb(221, 221, 221);
     width: 80px;
     height: 80px;
+}
+
+@keyframes moveSpriteSheet {
+    from {
+        transform: translate3d(0px, 0, 0)
+    }
+    to {
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes reverseMoveSpriteSheet {
+    from {
+        transform: translate3d(0px, 0, 0)
+    }
+    to {
+        transform: translate3d(-100%, 0, 0);
+    }
 }
