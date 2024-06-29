@@ -1,23 +1,21 @@
+<!-- task creation page -->
 {% extends "./master.html" %}
 {% load static %}
 
-{% block title %}
-    Tasks
-{% endblock %}
+{% block title %} Tasks {% endblock %}
+{% block mainTitle %} Tasks {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'sidequest/task.css' %}">
+    <link rel="stylesheet" href="{% static 'sidequest/task.css' %}?6282024">
 {% endblock %}
 
 {% block content %}   
-    <main>
-        <div class="task-box">
-            <div class="box current-task">
-                <h2>Current Tasks</h2>
-            </div>
-            <div class="box past-tasks">
-                <h2>Past Tasks</h2>
-            </div>
+    <div class="task-box">
+        <div class="box current-task">
+            <h2>Current Tasks</h2>
         </div>
-    </main>
+        <div class="box past-tasks">
+            <h2>Past Tasks</h2>
+        </div>
+    </div>
 {% endblock %}

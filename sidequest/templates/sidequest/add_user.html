@@ -1,15 +1,26 @@
 <!-- templates/register.html -->
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
+{% extends "./master.html" %}
+{% load static %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block mainTitle %}
+    Register
+{% endblock %}
+
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'sidequest/form.css' %}?6282024">
+{% endblock %}
+
+{% block content %}  
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+    </div>
+{% endblock %}

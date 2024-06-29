@@ -1,23 +1,24 @@
 {% extends "./master.html" %}
 {% load static %}
 
-{% block title %}
-    Side Quests
-{% endblock %}
+{% block title %} Side Quest {% endblock %}
+{% block mainTitle %} Side Quest {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'sidequest/index.css' %}">
+    <link rel="stylesheet" href="{% static 'sidequest/index.css' %}?6282024">
 {% endblock %}
 
 {% block content %}   
-    <main>
-        <section id="game">
-            <img src="{% static 'sidequest/img/hero.png' %}" alt="character hero image">
-            <img src="{% static 'sidequest/img/gelatinous_cube.png' %}" alt="gelatinous cube">
-        </section>
-        <section id="widgets">
-            <div><a href="task">Tasks</a></div>
-            <div><a href="">Character Info</a></div>
-        </section>
-    </main>
+    <section id="game">
+        <div id="hero">
+            <img class='warrior pixelArt' src="{% static 'sidequest/img/idle.png' %}" alt="warrior">
+        </div>
+        <div id="monster">
+            <img class='skeleton pixelArt' src="{% static 'sidequest/img/idleSkeleton.png' %}" alt="skeleton">
+        </div>
+    </section>
+    <section id="widgets">
+        <div><a href="task">Tasks</a></div>
+        <div><a href="character">Character Info</a></div>
+    </section>
 {% endblock %}

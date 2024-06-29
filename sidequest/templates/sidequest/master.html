@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" href="{% static 'sidequest/styles.css' %}">
+        <link rel="stylesheet" href="{% static 'sidequest/styles.css' %}?6282024">
         <script src="{% static 'sidequest/index.js' %}" defer></script>
         {% block links %}
         {% endblock %}
@@ -13,21 +13,23 @@
     <body>
         <header>
             <button id="menu-trigger">☰</button> <!-- Hamburger icon -->
-            <h1>Side Quest</h1>
+            <h1><a href="home">{% block mainTitle %}{% endblock %}</a></h1>
             <div class="user-login">
-                <input type="text" placeholder="Username">
-                <button>Login</button>
+                <button><a href="login">Login</a></button>
+                <button><a href="register">Sign In</a></button>
             </div>
         </header>
 
         <div id="menu-container">
             <div id="menu-content">
-                <a href="">Home</a>
+                <a href="home">Home</a>
                 <a href="task">Tasks</a>
-                <a href="hello_there">Character</a>
+                <a href="character">Character</a>
             </div>
         </div>
-        {% block content %}
-        {% endblock %}
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
     </body>
 </html>

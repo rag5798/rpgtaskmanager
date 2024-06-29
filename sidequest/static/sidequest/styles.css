@@ -1,12 +1,13 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+    background-color: #ECF0F1;
+    color: #111;
 }
 
 a {
     text-decoration: none;
-    color:#111;
+    color:inherit;
 }
 
 header {
@@ -33,7 +34,7 @@ header h1{
 }
 
 .user-login button {
-    padding: 5px;
+    padding: 5px 8px;
 }
 
 #menu-container {
@@ -49,7 +50,8 @@ header h1{
 }
 
 #menu-content {
-    padding: 20px;
+    padding: 20px 10px;
+    margin-top: 8dvh;
 }
 
 #menu-content a {
@@ -64,7 +66,6 @@ header h1{
     cursor: pointer;
     background: transparent;
     border: none;
-    color: black;
     justify-self: left; /* Center the hamburger icon */
 }
 
@@ -72,4 +73,3 @@ header h1{
     background-color: blanchedalmond;
     color: white;
 }
-    
