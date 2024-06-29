@@ -3,6 +3,7 @@ sidequest_server/__pycache__/
 sidequest/__pycache__/
 sidequest/migrations/__pycache__/
 **/__pycache__/
+sidequest\migrations\__pycache__\__init__.cpython-312.pyc
 
 # Ignore virtual environments
 venv/
