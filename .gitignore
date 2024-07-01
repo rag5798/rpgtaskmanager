@@ -4,6 +4,7 @@ sidequest/__pycache__/
 sidequest/migrations/__pycache__/
 **/__pycache__/
 sidequest/migrations/__pycache__/__init__.cpython-312.pyc
+/db.sqlite3
 
 # Ignore virtual environments
 venv/
