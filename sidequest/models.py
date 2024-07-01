@@ -15,7 +15,7 @@ class Task(models.Model):
     task_description = models.CharField(max_length=50, null=True)
     completed = models.BooleanField(default=False, null=True)
     task_completion_counter = models.IntegerField(default=0, null=True)
-
+    repetitive = models.BooleanField(default=False)
 
 
 class CharacterStats:
