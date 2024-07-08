@@ -1,4 +1,3 @@
-<!-- task creation page -->
 {% extends "./master.html" %}
 {% load static %}
 
@@ -10,32 +9,40 @@
 {% endblock %}
 
 {% block content %}
-
-    
-        <div class="task-box">
-            <div class="box current-task">
-                <h2>Current Tasks</h2>
-                <ul>
-                    {% for task in tasks %}
-                        {% if not task.completed %}
-                            <li>{{ task.task_name }}: {{ task.task_description }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="box past-tasks">
-                <h2>Past Tasks</h2>
-                <ul>
-                    {% for task in tasks %}
-                        {% if task.completed %}
-                            <li>{{ task.task_name }}: {{ task.task_description }}</li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </div>
+<ul>
+    {% for stat in stats %}
+        <li>Attacks: {{ stat.attacks }}</li>
+    {% endfor %}
+</ul>
+    <div class="task-box">
+        <div class="box current-task">
+            <h2>Current Tasks</h2>
+            <ul>
+                {% for task in tasks %}
+                    {% if not task.completed %}
+                        <li>
+                            {{ task.task_name }}: {{ task.task_description }}
+                            <form method="post" action="{% url 'complete_task' task.task_id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="button">Mark as Completed</button>
+                            </form>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
-        <div>
-            <a href="{% url 'task_creation' %}" class="button">Create New Task</a>
+        <div class="box past-tasks">
+            <h2>Past Tasks</h2>
+            <ul>
+                {% for task in tasks %}
+                    {% if task.completed %}
+                        <li>{{ task.task_name }}: {{ task.task_description }}</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
-    </main>
+    </div>
+    <div>
+        <a href="{% url 'task_creation' %}" class="button">Create New Task</a>
+    </div>
 {% endblock %}

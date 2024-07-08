@@ -1,12 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import UserDataForm, TaskForm, TaskCreationForm
-from .models import UserData, Task, User
-from .forms import UserDataForm, TaskForm, TaskCreationForm
-from .models import UserData, Task, User
+from .models import UserData, Task, User, Character
+from django.utils.timezone import now
 
 def home(request):
     return render(
@@ -18,10 +17,15 @@ def home(request):
 def task(request):
     user_id = request.user.id
     tasks = Task.objects.filter(user_id=user_id)
+    character = Character.objects.filter(user_id=user_id)
     return render(
         request,
         "sidequest/task.html",
-        {"tasks": tasks}  # Pass the tasks to the template context
+        {
+            "tasks": tasks,
+            "stats": character
+        } 
+        # Pass the tasks to the template context
     )
 
 def character(request):
@@ -80,6 +84,7 @@ def add_user(request):
             user_data = UserData.objects.get(username=username)
         except UserData.DoesNotExist:
             UserData.objects.create(username=username, password=password)
+
             return redirect('home')
     else:
         form = UserDataForm()
@@ -118,3 +123,14 @@ def task_creation(request):
     else:
         form = TaskCreationForm()
     return render(request, 'sidequest/task_creation.html', {'form': form})
+
+@login_required
+def complete_task(request, task_id):
+    task = get_object_or_404(Task, task_id=task_id, user_id=request.user.id)
+    character = get_object_or_404(Character, user_id=request.user.id)
+    if request.method == 'POST':
+        task.completed = True
+        task.updated_at = now()
+        character.attacks += 1
+        task.save()
+        return redirect('task')  # Redirect back to the task list page
