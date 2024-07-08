@@ -15,10 +15,7 @@ def home(request):
     )
 
 @login_required
-@login_required
 def task(request):
-    user_id = request.user.id
-    tasks = Task.objects.filter(user_id=user_id)
     user_id = request.user.id
     tasks = Task.objects.filter(user_id=user_id)
     return render(
@@ -109,7 +106,7 @@ def protected_view(request):
 @login_required
 def task_creation(request):
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = TaskCreationForm(request.POST)
         if form.is_valid():
             task = form.save(commit=False)
             task.user_id = request.user
@@ -121,27 +118,3 @@ def task_creation(request):
     else:
         form = TaskCreationForm()
     return render(request, 'sidequest/task_creation.html', {'form': form})
-
-
-
-
-
-# views.py
-@login_required
-def task_creation(request):
-    if request.method == 'POST':
-        form = TaskForm(request.POST)
-        if form.is_valid():
-            task = form.save(commit=False)
-            task.user_id = request.user
-            task.completed = False
-            task.task_completion_counter = 0
-            task.repetitive = form.cleaned_data['repetitive']
-            task.save()
-            return redirect('task')
-    else:
-        form = TaskCreationForm()
-    return render(request, 'sidequest/task_creation.html', {'form': form})
-
-
-
