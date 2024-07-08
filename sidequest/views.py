@@ -9,10 +9,17 @@ from .forms import UserDataForm, TaskForm, TaskCreationForm
 from .models import UserData, Task, User
 
 def home(request):
-    return render(
-        request,
-        "sidequest/index.html"
-    )
+    if request.user.is_authenticated:
+        return render(
+            request,
+            "sidequest/protected-index.html"
+        )
+    else:
+        return render(
+            request,
+            "sidequest/index.html"
+        )
+    
 
 @login_required
 @login_required
@@ -121,9 +128,6 @@ def task_creation(request):
     else:
         form = TaskCreationForm()
     return render(request, 'sidequest/task_creation.html', {'form': form})
-
-
-
 
 
 # views.py

@@ -5,20 +5,28 @@
 {% block mainTitle %} Side Quest {% endblock %}
 
 {% block links %}
-    <link rel="stylesheet" href="{% static 'sidequest/index.css' %}?6282024">
+    <link rel="stylesheet" href="{% static 'sidequest/index.css' %}?07012024">
 {% endblock %}
 
 {% block content %}   
     <section id="game">
+        <div class="background-img">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+        </div>
+          
         <div id="hero">
-            <img class='warrior pixelArt' src="{% static 'sidequest/img/idle.png' %}" alt="warrior">
+            <img class='run pixelArt' src="{% static 'sidequest/img/Run.png'%}" alt="warrior">
         </div>
-        <div id="monster">
-            <img class='skeleton pixelArt' src="{% static 'sidequest/img/idleSkeleton.png' %}" alt="skeleton">
+        <div class="banner">
+            <h3>Welcome to Side Quests</h3>
+            <p>This is a game to help you in real life!</p>
+            <a href="login">Log in to play</a>
         </div>
     </section>
-    <section id="widgets">
-        <div><a href="task">Tasks</a></div>
-        <div><a href="character">Character Info</a></div>
-    </section>
+    
 {% endblock %}

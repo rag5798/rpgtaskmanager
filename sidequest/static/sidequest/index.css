@@ -1,6 +1,11 @@
 #game {
     display: flex;
-    justify-content: space-around;
+    overflow: hidden;
+    height: 500px;
+    width: 1350px;
+    position: relative; 
+    margin: 0 auto;
+    border-radius: 16px;
 }
 
 :root {
@@ -11,10 +16,16 @@
     width: calc(95px * var(--pixel-size));
     height: calc(80px * var(--pixel-size));
     overflow: hidden;
+    z-index: 100;
+    margin-top: 6em;
 }
 
-.warrior {
+.warrior { /*idle*/
     animation: moveSpriteSheet 1s steps(6) infinite;
+    width: calc(700px * var(--pixel-size));
+}
+.run { /*run*/
+    animation: moveSpriteSheet 1s steps(8) infinite;
     width: calc(700px * var(--pixel-size));
 }
 
@@ -23,7 +34,32 @@
     width: calc(500px * var(--pixel-size));
 }
 
-.pixelart {
+.background-img {
+    animation: reverseMoveSpriteSheet 20s linear infinite;
+    position: absolute; 
+    white-space: nowrap;
+}
+
+.background-img img {  
+    height: 500px;  
+    margin: 0 -0.5em; 
+}
+
+.banner {
+    position: absolute;
+    top: 25%;
+    right: 15%;
+    background-color: aliceblue;
+    padding: 20px 40px 40px;
+    font-size: 1.5em;
+    border-radius: 16px;
+    text-align: center;
+}
+.banner a{
+    font-size: .8em;
+}
+
+.pixelArt {
     image-rendering: pixelated;
 }
 
@@ -58,6 +94,6 @@
         transform: translate3d(0px, 0, 0)
     }
     to {
-        transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-50%, 0, 0);
     }
 }

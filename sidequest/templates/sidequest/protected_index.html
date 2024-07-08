@@ -1,0 +1,31 @@
+{% extends "./master.html" %}
+{% load static %}
+
+{% block title %} Side Quest {% endblock %}
+{% block mainTitle %} Side Quest {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'sidequest/index.css' %}?07012024">
+{% endblock %}
+
+{% block content %}   
+    <section id="game">
+        <div class="background-img">
+            <img src="{% static 'sidequest/img/origbig.png'%}?07012024" alt="background image">
+        </div>
+          
+        <div id="hero">
+            <img class='warrior pixelArt' src="{% static 'sidequest/img/Idle.png'%}" alt="warrior">
+        </div>
+        <div id="monster">
+            <img class='skeleton pixelArt' src="{% static 'sidequest/img/IdleSkeleton.png'%}" alt="skeleton">
+        </div>
+        <button>Attack</button>
+    </section>
+    <section id="tasks">
+        <p>tasks</p>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% endfor %}
+    </section>
+{% endblock %}
