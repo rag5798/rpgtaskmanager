@@ -3,9 +3,10 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .forms import UserDataForm, TaskForm, TaskCreationForm
+from .forms import UserDataForm, TaskForm, TaskCreationForm, CharacterCreationForm
 from .models import UserData, Task, User, Character
 from django.utils.timezone import now
+import random
 
 def home(request):
     return render(
@@ -134,3 +135,30 @@ def complete_task(request, task_id):
         character.attacks += 1
         task.save()
         return redirect('task')  # Redirect back to the task list page
+    
+@login_required
+def character_selection(request):
+    if request.method == 'POST':
+        form = CharacterCreationForm(request.POST)
+        if form.is_valid():
+            character = form.save(request.user)
+            return redirect('character_roll', character_stats_id=character.id)
+    else:
+        form = CharacterCreationForm()
+    return render(request, 'sidequest/character_selection.html', {'form': form})
+
+@login_required
+def character_roll(request, character_id):
+    character = Character.objects.get(pk=character_id)
+    context = {
+        'character': character,
+        'random_numbers': {
+            'strength': random.randint(1, 20),
+            'dexterity': random.randint(1, 20),
+            'constitution': random.randint(1, 20),
+            'intelligence': random.randint(1, 20),
+            'wisdom': random.randint(1, 20),
+            'charisma': random.randint(1, 20),
+        }
+    }
+    return render(request, 'sidequest/character_roll.html', context)
