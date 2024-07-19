@@ -142,6 +142,7 @@ def complete_task(request, task_id):
         task.updated_at = now()
         character.attacks += 1
         task.save()
+        character.save()  # Save the character after incrementing attacks
         return redirect('task')  # Redirect back to the task list page
     
 @login_required
