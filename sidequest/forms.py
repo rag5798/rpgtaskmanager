@@ -26,13 +26,16 @@ class TaskCreationForm(forms.ModelForm):
 class CharacterCreationForm(forms.ModelForm):
     class Meta:
         model = Character
-        fields = ['character_name', 'class_name', 'race']
+        fields = ['character_name']  # Only include character_name in the form
 
-    def save(self, user):
+    def save(self, user, commit=True):
+        # Create the character instance with the provided character_name
         character = super().save(commit=False)
-        character.user_id = user
-        character.level = 0
-        character.attacks = 0
+        character.user = user  # Set the user for the character
+        character.class_name = 'barbarian'  # Default value for class_name
+        character.race = 'human'  # Default value for race
+        character.level = 0  # Default level
+        character.attacks = 0  # Default attacks
 
         # Assign random stats between 1 and 20
         character.strength = random.randint(1, 20)
@@ -42,7 +45,8 @@ class CharacterCreationForm(forms.ModelForm):
         character.wisdom = random.randint(1, 20)
         character.charisma = random.randint(1, 20)
 
-        character.save()
+        if commit:
+            character.save()
         return character
 
 

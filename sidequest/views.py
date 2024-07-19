@@ -95,13 +95,21 @@ def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
+            # Save the user
             user = form.save(commit=False)
             user.is_staff = False
             user.is_superuser = False
             user.save()
-            return redirect('login')  # Redirect to login page after successful registration
+
+            # Create and save the character for the new user
+            character_form = CharacterCreationForm({'character_name': user.username})
+            character = character_form.save(user=user, commit=True)  # Save the character
+
+            # Redirect to the character roll page with the character context
+            return render(request, 'sidequest/character_roll.html', {'character': character})
     else:
         form = UserCreationForm()
+
     return render(request, 'sidequest/add_user.html', {'form': form})
 
 @login_required
@@ -149,16 +157,12 @@ def character_selection(request):
 
 @login_required
 def character_roll(request, character_id):
-    character = Character.objects.get(pk=character_id)
+    # Retrieve the character based on the ID
+    character = get_object_or_404(Character, id=character_id)
+
+    # Pass character attributes to the template
     context = {
-        'character': character,
-        'random_numbers': {
-            'strength': random.randint(1, 20),
-            'dexterity': random.randint(1, 20),
-            'constitution': random.randint(1, 20),
-            'intelligence': random.randint(1, 20),
-            'wisdom': random.randint(1, 20),
-            'charisma': random.randint(1, 20),
-        }
+        'character': character
     }
+
     return render(request, 'sidequest/character_roll.html', context)
