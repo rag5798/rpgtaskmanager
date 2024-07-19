@@ -22,17 +22,17 @@ class Task(models.Model):
 
 class Character(models.Model):
     character_stats_id = models.AutoField(primary_key=True, editable=False)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     character_name = models.CharField(max_length=100)
-    class_name = models.CharField(max_length=100, choices=[('barbarian', 'Barbarian')], default='barbarian')
-    race = models.CharField(max_length=100, choices=[('human', 'Human')], default='human')
+    class_name = models.CharField(max_length=100, default='barbarian')
+    race = models.CharField(max_length=100, default='human')
     level = models.IntegerField(default=0)
-    strength = models.IntegerField(default=0)
-    dexterity = models.IntegerField(default=0)
-    constitution = models.IntegerField(default=0)
-    intelligence = models.IntegerField(default=0)
-    wisdom = models.IntegerField(default=0)
-    charisma = models.IntegerField(default=0)
+    strength = models.IntegerField(default=10)  # Default value changed to 10
+    dexterity = models.IntegerField(default=10)  # Default value changed to 10
+    constitution = models.IntegerField(default=10)  # Default value changed to 10
+    intelligence = models.IntegerField(default=10)  # Default value changed to 10
+    wisdom = models.IntegerField(default=10)  # Default value changed to 10
+    charisma = models.IntegerField(default=10)  # Default value changed to 10
     attacks = models.IntegerField(default=0)
 
 class Equipment(models.Model):

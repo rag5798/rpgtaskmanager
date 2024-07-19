@@ -1,17 +1,56 @@
-<!-- character_roll.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Character Roll</title>
+    <style>
+        .dice {
+            width: 200px; /* Adjust size as needed */
+            height: 200px;
+            display: inline-block;
+            margin-right: 10px;
+        }
+    </style>
+    {% load static %} <!-- Load static template tag library -->
+</head>
+<body>
+    <h1>Character Roll</h1>
 
-<h1>Character Attributes</h1>
-<ul>
-    <li>Strength: {{ random_numbers.strength }}</li>
-    <img src="/sidequest/img/{{ random_numbers.strength }}.gif" alt="Random Gif">
-    <li>Dexterity: {{ random_numbers.dexterity }}</li>
-    <img src="/sidequest/img/{{ random_numbers.dexterity }}.gif" alt="Random Gif">
-    <li>Constitution: {{ random_numbers.constitution }}</li>
-    <img src="/sidequest/img/{{ random_numbers.constitution }}.gif" alt="Random Gif">
-    <li>Intelligence: {{ random_numbers.intelligence }}</li>
-    <img src="/sidequest/img/{{ random_numbers.intelligence }}.gif" alt="Random Gif">
-    <li>Wisdom: {{ random_numbers.wisdom }}</li>
-    <img src="/sidequest/img/{{ random_numbers.wisdom }}.gif" alt="Random Gif">
-    <li>Charisma: {{ random_numbers.charisma }}</li>
-    <img src="/sidequest/img/{{ random_numbers.charisma }}.gif" alt="Random Gif">
-</ul>
+    <p><strong>Strength:</strong> {{ character.strength }}</p>
+    <img id="strength-dice" class="dice" alt="Strength Dice">
+    
+    <p><strong>Dexterity:</strong> {{ character.dexterity }}</p>
+    <img id="dexterity-dice" class="dice" alt="Dexterity Dice">
+
+    <p><strong>Constitution:</strong> {{ character.constitution }}</p>
+    <img id="constitution-dice" class="dice" alt="Constitution Dice">
+
+    <p><strong>Intelligence:</strong> {{ character.intelligence }}</p>
+    <img id="intelligence-dice" class="dice" alt="Intelligence Dice">
+
+    <p><strong>Wisdom:</strong> {{ character.wisdom }}</p>
+    <img id="wisdom-dice" class="dice" alt="Wisdom Dice">
+
+    <p><strong>Charisma:</strong> {{ character.charisma }}</p>
+    <img id="charisma-dice" class="dice" alt="Charisma Dice">
+
+    <a href="{% url 'login' %}"><button>Done</button></a>
+
+    <script>
+        // Function to set the image source based on the value
+        function setDiceImage(attributeId, value) {
+            var imgElement = document.getElementById(attributeId);
+            if (imgElement) {
+                imgElement.src = "{% static 'sidequest/img/' %}" + value + ".gif";
+            }
+        }
+
+        // Set images for all attributes
+        setDiceImage('strength-dice', "{{ character.strength }}");
+        setDiceImage('dexterity-dice', "{{ character.dexterity }}");
+        setDiceImage('constitution-dice', "{{ character.constitution }}");
+        setDiceImage('intelligence-dice', "{{ character.intelligence }}");
+        setDiceImage('wisdom-dice', "{{ character.wisdom }}");
+        setDiceImage('charisma-dice', "{{ character.charisma }}");
+    </script>
+</body>
+</html>
