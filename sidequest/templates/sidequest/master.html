@@ -13,7 +13,7 @@
     <body>
         <header>
             <button id="menu-trigger">☰</button> <!-- Hamburger icon -->
-            <h1><a href="home">{% block mainTitle %}{% endblock %}</a></h1>
+            <h1><a href="{% url 'home' %}">{% block mainTitle %}{% endblock %}</a></h1>
             <div class="user-login">
                 <button><a href="{% url 'login' %}">Login</a></button>
                 <button><a href="{% url 'register' %}">Sign In</a></button>
