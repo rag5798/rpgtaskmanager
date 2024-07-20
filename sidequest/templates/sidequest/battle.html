@@ -1,0 +1,45 @@
+{% extends "./master.html" %}
+{% load static %}
+
+{% block title %} Battle {% endblock %}
+{% block mainTitle %} Battle {% endblock %}
+
+{% block links %}
+    <link rel="stylesheet" href="{% static 'sidequest/battle.css' %}?6282024">
+{% endblock %}
+
+{% block content %}
+<div class="battle-container">
+    <div class="character-section">
+        <img src="{% static 'sidequest/img/hero.png' %}" alt="Character Sprite" class="sprite">
+        <div class="health-bar">
+            <div class="health" style="width: {{ character.health }}%;"></div>
+        </div>
+        <p>{{ character.character_name }}</p>
+        <p>Health: {{ character.health }}</p>
+        <p>Attacks: {{ character.attacks }}</p>
+        <p><strong>Strength:</strong> {{ character.strength }}</p>
+    </div>
+    <div class="monster-section">
+        <img src="{% static 'sidequest/img/gelatinous_cube.png' %}" alt="Monster Sprite" class="sprite">
+        <div class="health-bar">
+            <div class="health" style="width: {{ monster.health }}%;"></div>
+        </div>
+        <p>{{ monster.name }}</p>
+        <p>Health: {{ monster.health }}</p>
+    </div>
+</div>
+
+{% if dice_roll is not None %}
+    <div class="dice-roll">
+        <p>Dice Roll: {{ dice_roll }}</p>
+        <img id="dice" class="dice" src="{% static 'sidequest/img/' %}{{ dice_roll }}.gif" alt="Dice Roll">
+        <p>Attack Damage: {{ attack_damage }}</p>
+    </div>
+{% endif %}
+
+<form method="post" action="{% url 'battle' %}">
+    {% csrf_token %}
+    <button type="submit" class="button" {% if character.attacks == 0 %}disabled{% endif %}>Attack</button>
+</form>
+{% endblock %}

@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .forms import UserDataForm, TaskForm, TaskCreationForm, CharacterCreationForm
-from .models import UserData, Task, User, Character
+from .models import UserData, Task, User, Character, Monster
 from django.utils.timezone import now
 import random
 
@@ -30,10 +30,13 @@ def task(request):
     )
 
 def character(request):
+    character = get_object_or_404(Character, user=request.user)
     return render(
         request,
         "sidequest/character.html",
+        {'character': character}
     )
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -167,3 +170,44 @@ def character_roll(request, character_id):
     }
 
     return render(request, 'sidequest/character_roll.html', context)
+
+@login_required
+def battle_view(request):
+    character = get_object_or_404(Character, user_id=request.user.id)
+    monster = Monster.objects.first()  # Get the first monster for simplicity
+
+    if request.method == 'POST':
+        if character.attacks > 0:
+            dice_roll = random.randint(1, 20)  # Roll a 20-sided die
+            attack_damage = dice_roll + character.strength  # Calculate the total attack damage
+            monster.health -= attack_damage
+            character.attacks -= 1
+            monster.save()
+            character.save()
+
+            # Check if the monster is defeated
+            if monster.health <= 0:
+                monster.health = 0
+                monster.save()
+                return redirect('victory')  # Redirect to a victory page if needed
+
+            # Pass the dice roll and attack damage to the template
+            context = {
+                'character': character,
+                'monster': monster,
+                'dice_roll': dice_roll,
+                'attack_damage': attack_damage,
+            }
+            return render(request, 'sidequest/battle.html', context)
+
+    context = {
+        'character': character,
+        'monster': monster,
+        'dice_roll': None,
+        'attack_damage': None,
+    }
+    return render(request, 'sidequest/battle.html', context)
+
+@login_required
+def victory_view(request):
+    return render(request, 'sidequest/victory.html')

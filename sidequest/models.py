@@ -34,6 +34,8 @@ class Character(models.Model):
     wisdom = models.IntegerField(default=10)  # Default value changed to 10
     charisma = models.IntegerField(default=10)  # Default value changed to 10
     attacks = models.IntegerField(default=0)
+    health = models.IntegerField(default=100)
+    equipment = models.TextField(blank=True, null=True)
 
 class Equipment(models.Model):
     equipment_id = models.AutoField(primary_key=True, editable=False)
@@ -45,4 +47,10 @@ class Inventory(models.Model):
     inventory_id = models.AutoField(primary_key=True, editable=False)
     equipment_id = models.ForeignKey(Equipment, on_delete=models.CASCADE)
     character_id = models.ForeignKey(Character, on_delete=models.CASCADE)
+
+class Monster(models.Model):
+    name = models.CharField(max_length=100)
+    health = models.IntegerField(default=100)  # Default health
+    image_path = models.CharField(max_length=100, default="")
+
 

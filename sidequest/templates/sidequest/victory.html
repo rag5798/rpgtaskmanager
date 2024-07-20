@@ -1,0 +1,13 @@
+{% extends "./master.html" %}
+{% load static %}
+
+{% block title %} Victory {% endblock %}
+{% block mainTitle %} Victory {% endblock %}
+
+{% block content %}
+<div class="victory-message">
+    <h1>Congratulations!</h1>
+    <p>You have defeated the monster!</p>
+    <a href="{% url 'home' %}" class="button">Go Home</a>
+</div>
+{% endblock %}
