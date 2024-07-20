@@ -13,4 +13,6 @@ urlpatterns = [
     path('tasks/complete/<int:task_id>/', views.complete_task, name='complete_task'),
     path('character/select/', views.character_selection, name='character_select'),
     path('character_roll/<int:character_id>/', views.character_roll, name='character_roll'),
+    path('battle/', views.battle_view, name='battle'),
+    path('victory/', views.victory_view, name='victory'),
 ]
