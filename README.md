@@ -36,6 +36,6 @@ As a team, we want to get more experience in software development.
 ## Future Work
 
 <!-- Things that you need to fix, improve, and add in the future. -->
-* Item 1
-* Item 2
-* Item 3
+* Style the Website
+* Add Polished Task and Attack Functionality
+* Add Items and a Shop
